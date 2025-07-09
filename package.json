@@ -1,0 +1,28 @@
+{
+  "name": "real-time-ai-support-dashboard-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo for the Real-Time AI-Powered Customer Support Dashboard",
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "dev:backend": "pnpm --filter backend-api dev",
+    "dev:frontend": "pnpm --filter frontend-app dev",
+    "dev:ai": "pnpm --filter ai-service dev",
+    "start:docker": "docker-compose up -d",
+    "stop:docker": "docker-compose down"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "prettier": "^3.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "pnpm": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

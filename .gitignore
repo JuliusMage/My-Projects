@@ -1,8 +1,89 @@
-node_modules
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+coverage/
+*.lcov
+
+# TypeScript
+*.tsbuildinfo
+dist/
+build/
+
+# IDEs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Environment variables
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
+!/.env.example # Ensure root .env.example is not ignored if more specific like .env.* is present
+
+# Docker
+docker-compose.override.yml
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.tfplan
+terraform.tfvars
+
+# Logs
 logs
-pgdata
-dist
-**/dist
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+/dist # General build output
+/build # General build output
+/out # Next.js specific
+
+# Next.js & React specific
+.next/
+.vercel/
+
+# NestJS specific (often overlaps with general /dist)
+# /dist (already covered)
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Other
+cache/
+.cache/
+local_db_data/ # For local Docker PostgreSQL data
+redis_data/ # For local Docker Redis data
+
+# Compiled files
+*.js # if source is ts and you want to ignore compiled js in source dirs
+*.js.map # if source is ts
+*.d.ts # if source is ts and you want to ignore declaration files in source dirs (usually in dist)
+
+# Test results
+junit.xml
+TESTS-*.xml

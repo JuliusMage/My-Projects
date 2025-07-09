@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "sourceMap": true,
+    "composite": true, // Important for project references in a monorepo
+    "baseUrl": ".", // Allows path mapping
+    "paths": {
+      "@shared-types/*": ["packages/shared-types/src/*"]
+      // Add other shared packages here if needed
+    }
+  },
+  "exclude": ["node_modules", "dist", "build"]
+}

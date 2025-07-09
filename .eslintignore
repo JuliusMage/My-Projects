@@ -1,0 +1,7 @@
+node_modules
+dist
+build
+coverage
+.turbo
+*.js # If you only want to lint .ts files at the root or in specific configs
+*.d.ts
