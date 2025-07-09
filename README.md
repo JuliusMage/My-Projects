@@ -37,9 +37,17 @@ git clone https://github.com/your-username/ai-customer-support-dashboard.git
 cd ai-customer-support-dashboard
 ```
 
-### 2. Setup environment variables
+### 2. Install dependencies
 
-Create a `.env` file in both `frontend/`, `backend/`, and `ai-service/` directories. Sample contents:
+Run the provided setup script to install all Node and Python packages:
+
+```bash
+./setup.sh
+```
+
+### 3. Setup environment variables
+
+Create a `.env` file in `apps/frontend/`, `apps/backend-api/`, and `ai-service/` directories. Sample contents:
 
 ```
 # backend/.env
@@ -59,13 +67,13 @@ docker-compose up --build
 
 ```bash
 # Start backend
-cd backend && npm install && npm run start:dev
+cd apps/backend-api && npm run start:dev
 
 # Start frontend
-cd frontend && npm install && npm run dev
+cd apps/frontend && npm run dev
 
 # Start AI service
-cd ai-service && pip install -r requirements.txt && python summarizer.py
+cd ai-service && python summarizer.py
 ```
 
 ### 5. Kafka Setup (if using Kafka)
@@ -78,10 +86,10 @@ Install Kafka and run `producer.js` and `consumer.js` in `kafka-pipeline/`.
 
 ```bash
 # Unit & integration tests
-cd backend && npm run test
+cd apps/backend-api && npm run test
 
 # End-to-end tests
-cd frontend && npx cypress open
+cd apps/frontend && npx cypress open
 ```
 
 ---
