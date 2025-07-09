@@ -13,4 +13,10 @@ export class AiController {
   summarize(@Body('chat') chat: string[]) {
     return this.service.summarize(chat);
   }
+
+  @Post('analyze')
+  @Roles('agent', 'admin')
+  analyze(@Body('text') text: string) {
+    return this.service.analyze(text);
+  }
 }

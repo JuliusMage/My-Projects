@@ -38,3 +38,39 @@ async def summarize(req: SummarizeRequest):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", "8000")))
+
+
+class AnalyzeRequest(BaseModel):
+    text: str
+
+# Basic sentiment analysis (keyword-based)
+POSITIVE_KEYWORDS = ["good", "great", "happy", "love", "excellent", "thanks", "helpful"]
+NEGATIVE_KEYWORDS = ["bad", "terrible", "sad", "hate", "poor", "problem", "issue", "unacceptable"]
+
+def simple_sentiment_analysis(text: str) -> tuple[str, list[str]]:
+    text_lower = text.lower()
+    keywords_found = []
+    sentiment_score = 0
+
+    for kw in POSITIVE_KEYWORDS:
+        if kw in text_lower:
+            sentiment_score += 1
+            keywords_found.append(kw)
+    for kw in NEGATIVE_KEYWORDS:
+        if kw in text_lower:
+            sentiment_score -= 1
+            keywords_found.append(kw)
+
+    if sentiment_score > 0:
+        sentiment = "positive"
+    elif sentiment_score < 0:
+        sentiment = "negative"
+    else:
+        sentiment = "neutral"
+
+    return sentiment, list(set(keywords_found)) # Return unique keywords
+
+@app.post("/analyze")
+async def analyze(req: AnalyzeRequest):
+    sentiment, keywords = simple_sentiment_analysis(req.text)
+    return {"sentiment": sentiment, "keywords": keywords}

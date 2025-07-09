@@ -9,4 +9,9 @@ export class AiService {
     const res = await axios.post(`${this.baseUrl}/summarize`, { chat_history: chat });
     return res.data;
   }
+
+  async analyze(text: string) {
+    const res = await axios.post(`${this.baseUrl}/analyze`, { text });
+    return res.data;
+  }
 }
