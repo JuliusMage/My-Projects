@@ -55,6 +55,14 @@ PORT=5000
 DATABASE_URL=postgres://user:pass@db:5432/supportdb
 REDIS_URL=redis://localhost:6379
 OPENAI_API_KEY=your_key
+
+# frontend/.env
+VITE_API_BASE_URL=http://localhost:5000
+VITE_WS_URL=ws://localhost:5000
+
+# ai-service/.env
+PORT=8000
+OPENAI_API_KEY=mock
 ```
 
 ### 3. Run using Docker Compose

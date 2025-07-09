@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+import openai
 import os
 
 app = FastAPI()
@@ -10,8 +11,22 @@ class SummarizeRequest(BaseModel):
 @app.post("/summarize")
 async def summarize(req: SummarizeRequest):
     text = "\n".join(req.chat_history)
-    # Mock summarization
-    summary = text[:200]
+    api_key = os.getenv("OPENAI_API_KEY", "mock")
+    if api_key != "mock":
+        openai.api_key = api_key
+        try:
+            resp = await openai.ChatCompletion.acreate(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "Summarize the following conversation."},
+                    {"role": "user", "content": text},
+                ],
+            )
+            summary = resp["choices"][0]["message"]["content"]
+        except Exception:
+            summary = text[:200]
+    else:
+        summary = text[:200]
     return {"summary": summary}
 
 if __name__ == "__main__":
