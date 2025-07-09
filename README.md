@@ -37,9 +37,20 @@ git clone https://github.com/your-username/ai-customer-support-dashboard.git
 cd ai-customer-support-dashboard
 ```
 
-### 2. Setup environment variables
+### 2. Install dependencies
 
-Create a `.env` file in both `frontend/`, `backend/`, and `ai-service/` directories. Sample contents:
+Run the provided setup script to install all Node and Python packages:
+
+```bash
+./setup.sh
+```
+If your environment restricts internet access, the installation steps may
+produce errors. The rest of the project can still be built using the provided
+Docker configuration.
+
+### 3. Setup environment variables
+
+Create a `.env` file in `apps/frontend/`, `apps/backend-api/`, and `ai-service/` directories. Sample contents:
 
 ```
 # backend/.env
@@ -47,6 +58,15 @@ PORT=5000
 DATABASE_URL=postgres://user:pass@db:5432/supportdb
 REDIS_URL=redis://localhost:6379
 OPENAI_API_KEY=your_key
+
+# frontend/.env
+VITE_API_BASE_URL=http://localhost:5000
+VITE_WS_URL=ws://localhost:5000
+
+# ai-service/.env
+PORT=8000
+OPENAI_API_KEY=mock
+OPENAI_MODEL=gpt-3.5-turbo
 ```
 
 ### 3. Run using Docker Compose
@@ -59,14 +79,18 @@ docker-compose up --build
 
 ```bash
 # Start backend
-cd backend && npm install && npm run start:dev
+cd apps/backend-api && npm run start:dev
 
 # Start frontend
-cd frontend && npm install && npm run dev
+cd apps/frontend && npm run dev
 
 # Start AI service
-cd ai-service && pip install -r requirements.txt && python summarizer.py
+cd ai-service && python summarizer.py
 ```
+
+The AI service uses OpenAI if `OPENAI_API_KEY` is provided. When the key is
+absent or the request fails, it falls back to a lightweight local summarization
+method that extracts the first few sentences from the chat history.
 
 ### 5. Kafka Setup (if using Kafka)
 
@@ -78,10 +102,10 @@ Install Kafka and run `producer.js` and `consumer.js` in `kafka-pipeline/`.
 
 ```bash
 # Unit & integration tests
-cd backend && npm run test
+cd apps/backend-api && npm run test
 
 # End-to-end tests
-cd frontend && npx cypress open
+cd apps/frontend && npx cypress open
 ```
 
 ---
