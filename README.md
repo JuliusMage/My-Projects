@@ -44,6 +44,9 @@ Run the provided setup script to install all Node and Python packages:
 ```bash
 ./setup.sh
 ```
+If your environment restricts internet access, the installation steps may
+produce errors. The rest of the project can still be built using the provided
+Docker configuration.
 
 ### 3. Setup environment variables
 
@@ -63,6 +66,7 @@ VITE_WS_URL=ws://localhost:5000
 # ai-service/.env
 PORT=8000
 OPENAI_API_KEY=mock
+OPENAI_MODEL=gpt-3.5-turbo
 ```
 
 ### 3. Run using Docker Compose
@@ -83,6 +87,10 @@ cd apps/frontend && npm run dev
 # Start AI service
 cd ai-service && python summarizer.py
 ```
+
+The AI service uses OpenAI if `OPENAI_API_KEY` is provided. When the key is
+absent or the request fails, it falls back to a lightweight local summarization
+method that extracts the first few sentences from the chat history.
 
 ### 5. Kafka Setup (if using Kafka)
 

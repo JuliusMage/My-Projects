@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import openai
 import os
@@ -8,6 +8,12 @@ app = FastAPI()
 class SummarizeRequest(BaseModel):
     chat_history: list[str]
 
+
+def local_summary(text: str) -> str:
+    """Fallback summarization using a naive first-sentences approach."""
+    sentences = [s.strip() for s in text.split(".") if s.strip()]
+    return ". ".join(sentences[:3])[:200]
+
 @app.post("/summarize")
 async def summarize(req: SummarizeRequest):
     text = "\n".join(req.chat_history)
@@ -16,7 +22,7 @@ async def summarize(req: SummarizeRequest):
         openai.api_key = api_key
         try:
             resp = await openai.ChatCompletion.acreate(
-                model="gpt-3.5-turbo",
+                model=os.getenv("OPENAI_MODEL", "gpt-3.5-turbo"),
                 messages=[
                     {"role": "system", "content": "Summarize the following conversation."},
                     {"role": "user", "content": text},
@@ -24,9 +30,9 @@ async def summarize(req: SummarizeRequest):
             )
             summary = resp["choices"][0]["message"]["content"]
         except Exception:
-            summary = text[:200]
+            summary = local_summary(text)
     else:
-        summary = text[:200]
+        summary = local_summary(text)
     return {"summary": summary}
 
 if __name__ == "__main__":
