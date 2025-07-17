@@ -1,144 +1,38 @@
-# 🧠 Real-Time AI-Powered Customer Support Dashboard
+# PatentScope Navigator
 
-A full-stack internal tool designed to assist support teams in SaaS companies by providing real-time insights, sentiment analysis, AI-generated replies, and collaborative tools for resolving customer tickets and chats efficiently.
+PatentScope Navigator is a web-based application that helps users explore patents, analyze trends, and make innovation decisions, with a focus on WIPO’s PCT system.
 
----
+## Project Purpose and Background
 
-## 🔍 Features
+This tool is designed for Technology and Innovation Support Centers (TISCs), researchers, and inventors to navigate the patent landscape effectively.
 
-- Live chat/ticket sentiment analysis with trend detection
-- GPT/LLaMA-powered summarization and reply generation
-- Realtime agent collaboration (comment tagging, annotations)
-- Role-based access control with audit logging
-- Scalable microservice architecture using Kafka and Redis
-- Containerized deployment on AWS using Terraform and Kubernetes
+## Setup & Run Instructions
 
----
+### Prerequisites
 
-## 🧱 Tech Stack
+- Docker
+- Docker Compose
 
-**Frontend**: React, TypeScript, Chakra UI  
-**Backend**: Node.js, Express or NestJS  
-**Realtime**: Socket.io (WebSockets)  
-**AI Layer**: OpenAI / LLaMA, Python (FastAPI/Flask)  
-**Data Pipeline**: Kafka or Redis Streams  
-**Database**: PostgreSQL (metadata), Redis (cache)  
-**Infrastructure**: Docker, Kubernetes, AWS (EKS + Lambda), Terraform  
-**CI/CD**: GitHub Actions
+### Running the Application
 
----
+1.  Clone the repository:
+    ```sh
+    git clone <repository-url>
+    ```
+2.  Navigate to the project directory:
+    ```sh
+    cd PatentScope-Navigator
+    ```
+3.  Run the application using Docker Compose:
+    ```sh
+    docker-compose up --build
+    ```
 
-## 🚀 Getting Started
+The frontend will be available at `http://localhost:3000` and the backend at `http://localhost:8000`.
 
-### 1. Clone the repository
+## Tech Stack
 
-```bash
-git clone https://github.com/your-username/ai-customer-support-dashboard.git
-cd ai-customer-support-dashboard
-```
-
-### 2. Setup environment variables
-
-Create a `.env` file in both `frontend/`, `backend/`, and `ai-service/` directories. Sample contents:
-
-```
-# backend/.env
-PORT=5000
-DATABASE_URL=postgres://user:pass@db:5432/supportdb
-REDIS_URL=redis://localhost:6379
-OPENAI_API_KEY=your_key
-```
-
-### 3. Run using Docker Compose
-
-```bash
-docker-compose up --build
-```
-
-### 4. Run locally (manual)
-
-```bash
-# Start backend
-cd backend && npm install && npm run start:dev
-
-# Start frontend
-cd frontend && npm install && npm run dev
-
-# Start AI service
-cd ai-service && pip install -r requirements.txt && python summarizer.py
-```
-
-### 5. Kafka Setup (if using Kafka)
-
-Install Kafka and run `producer.js` and `consumer.js` in `kafka-pipeline/`.
-
----
-
-## 🧪 Testing
-
-```bash
-# Unit & integration tests
-cd backend && npm run test
-
-# End-to-end tests
-cd frontend && npx cypress open
-```
-
----
-
-## 📘 API Endpoints (Backend)
-
-### POST /api/tickets
-
-Create a new customer ticket
-
-```json
-{
-  "customer_id": "123",
-  "message": "I'm having billing issues."
-}
-```
-
-### GET /api/tickets/:id
-
-Fetch ticket data by ID
-
-### POST /api/analyze
-
-Analyze message for sentiment and keywords
-
-```json
-{
-  "text": "This is unacceptable!"
-}
-```
-
-### POST /api/summarize
-
-Summarize a chat transcript using AI
-
-```json
-{
-  "chat_history": ["Hi", "I'm stuck on billing", "Resolved now"]
-}
-```
-
----
-
-## 🛠️ Deployment
-
-- Kubernetes manifests and Terraform scripts are under `terraform/`
-- Pre-configured for AWS EKS and Lambda
-- CI/CD workflows in `.github/workflows/`
-
----
-
-## 👥 Contributing
-
-Pull requests welcome. For major changes, please open an issue first to discuss what you would like to change.
-
----
-
-## 📄 License
-
-MIT License
+- **Frontend:** React + TypeScript
+- **Backend:** FastAPI (Python)
+- **Database:** Mock JSON data
+- **Deployment:** Docker + Docker Compose

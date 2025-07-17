@@ -1,0 +1,32 @@
+[
+  {
+    "id": "WO2023000001",
+    "title": "Novel Graphene-Based Composite for Water Purification",
+    "abstract": "A composite material comprising graphene oxide and a polymeric substrate for efficient removal of heavy metal ions from water.",
+    "ipc_codes": ["C02F 1/42", "B82Y 30/00"],
+    "applicants": ["AquaPure Inc."],
+    "inventors": ["Dr. Evelyn Reed"],
+    "publication_date": "2023-01-05",
+    "country": "US"
+  },
+  {
+    "id": "WO2023000002",
+    "title": "AI-Powered System for Early Diagnosis of Plant Diseases",
+    "abstract": "A system using convolutional neural networks (CNNs) to analyze leaf images and detect common plant diseases at an early stage.",
+    "ipc_codes": ["G06K 9/62", "A01G 7/00"],
+    "applicants": ["AgriTech Innovations"],
+    "inventors": ["Dr. Samuel Chen", "Maria Garcia"],
+    "publication_date": "2023-01-12",
+    "country": "CN"
+  },
+  {
+    "id": "WO2022000003",
+    "title": "Biodegradable Packaging Material from Agricultural Waste",
+    "abstract": "A method for producing biodegradable packaging material from rice husks and other agricultural waste products.",
+    "ipc_codes": ["C08L 97/02", "B65D 65/46"],
+    "applicants": ["EcoPack Solutions"],
+    "inventors": ["Dr. Ben Carter"],
+    "publication_date": "2022-07-20",
+    "country": "JP"
+  }
+]
