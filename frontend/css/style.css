@@ -1,0 +1,28 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    padding: 1rem;
+}
+
+#search-container {
+    margin-bottom: 1rem;
+}
+
+#search-bar {
+    width: 300px;
+    padding: 0.5rem;
+}
+
+#search-button {
+    padding: 0.5rem;
+}
